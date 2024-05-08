@@ -72,7 +72,7 @@
         <label for="uploadInput">Upload Image</label>
         <input type="file" id="uploadInput" accept="image/*" onchange="showFileName()">
         <button class="detect-button" onclick="detectPneumonia()">Detect</button>
-        <div id="result" class="message">No pneumonia detected</div>
+        <div id="result" class="message">Pneumonia not detected</div>
     </div>
     <script>
         function showFileName() {
@@ -84,13 +84,9 @@
 
         function detectPneumonia() {
             var resultDiv = document.getElementById('result');
-            var uploadInput = document.getElementById('uploadInput');
-            var file = uploadInput.files[0];
-
-            // Check if no file is selected
-            if (!file) {
+            setTimeout(function() {
                 resultDiv.classList.add('show');
-            }
+            }, 5000); // 5000 milliseconds = 5 seconds
         }
     </script>
 </body>
