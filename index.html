@@ -84,7 +84,13 @@
 
         function detectPneumonia() {
             var resultDiv = document.getElementById('result');
-            resultDiv.classList.add('show');
+            var uploadInput = document.getElementById('uploadInput');
+            var file = uploadInput.files[0];
+
+            // Check if no file is selected
+            if (!file) {
+                resultDiv.classList.add('show');
+            }
         }
     </script>
 </body>
