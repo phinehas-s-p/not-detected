@@ -62,7 +62,7 @@
         }
         .message.show {
             display: block;
-            color: red;
+            color: green;
         }
     </style>
 </head>
@@ -72,41 +72,19 @@
         <label for="uploadInput">Upload Image</label>
         <input type="file" id="uploadInput" accept="image/*" onchange="showFileName()">
         <button class="detect-button" onclick="detectPneumonia()">Detect</button>
-        <div id="result" class="message"></div>
-        <div id="pneumoniaMessage" class="message">Pneumonia Detected! Seek medical attention.</div>
-        <div id="uploadMessage" class="message">Please upload an image.</div>
+        <div id="result" class="message">No pneumonia detected</div>
     </div>
     <script>
         function showFileName() {
             var fileName = document.getElementById('uploadInput').value.split('\\').pop();
-            document.getElementById('result').innerText = "File uploaded: " + fileName;
-            document.getElementById('result').style.color = "black";
-            document.getElementById('pneumoniaMessage').classList.remove('show');
-            document.getElementById('uploadMessage').classList.remove('show');
+            if (fileName) {
+                document.getElementById('result').classList.add('show');
+            }
         }
 
         function detectPneumonia() {
             var resultDiv = document.getElementById('result');
-            var pneumoniaMessageDiv = document.getElementById('pneumoniaMessage');
-            var uploadMessageDiv = document.getElementById('uploadMessage');
-            var uploadInput = document.getElementById('uploadInput');
-            var file = uploadInput.files[0];
-
-            // Check if no file is selected
-            if (!file) {
-                uploadMessageDiv.classList.add('show');
-                resultDiv.innerText = ""; // Clear any previous results
-                pneumoniaMessageDiv.classList.remove('show');
-                return;
-            }
-
-            // Hide the upload message if an image is uploaded
-            uploadMessageDiv.classList.remove('show');
-
-            // Display "No pneumonia detected" message
-            resultDiv.innerText = "No pneumonia detected";
-            resultDiv.style.color = "green";
-            pneumoniaMessageDiv.classList.remove('show');
+            resultDiv.classList.add('show');
         }
     </script>
 </body>
